@@ -34,4 +34,7 @@ class TestIsbn < Minitest::Test
   def test_that_isbn13_9780471486480_has_invalid_checksum
   		assert_equal(false, isbn13_checksum("9780471486480"))
   end
+  def test_that_isbn13_9780470059029_has_invalid_checksum
+  		assert_equal(false, isbn13_checksum("9780470059029"))
+  	end
 end
