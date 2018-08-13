@@ -19,7 +19,7 @@ class TestIsbn < Minitest::Test
   def test_that_isbn10_has_10_digits
   		assert_equal("1234567890", isbn_letters("1234567890"))
   	end
-  def test_that_isbn10_has_invalid_checksum
+  def test_that_isbn10_877195869a_has_valid_checksum
   		assert_equal(false, isbn10_checksum("877195869a"))
   	end
   def test_that_isbn10_877195869X_has_valid_checksum
@@ -28,4 +28,10 @@ class TestIsbn < Minitest::Test
   def test_that_isbn10_0471958697_has_valid_checksum
   		assert_equal(true, isbn10_checksum("0471958697"))
   	end
+  def test_that_isbn10_877195x869_has_valid_checksum
+  		assert_equal(false, isbn10_checksum("877195x869"))
+  	end
+  # def test_that_isbn13_sum_adds_numbers
+  # 		assert_equal(0, isbn13_checksum("9780470059029"))
+  # end
 end

@@ -60,3 +60,32 @@ def isbn10_checksum(isbn)
 		true
 	end
 end
+# def isbn13_checksum(isbn)
+# 	isbn2 = isbn
+# 	if isbn2 == "Invalid ISBN"
+# 		false
+# 	else
+# 		checksum_arr = []
+# 		counter = 1
+# 		sum = 0
+# 		isbn2 = isbn2.split("")
+# 		checkdigit = isbn2.pop
+# 		isbn2.each_with_index do |inv, num|
+# 			num = num.to_i
+# 			inv = inv.to_i
+# 			if num.even? == true
+# 				sum += inv * 1
+# 			else
+# 				sum += inv * 3
+# 			end
+# 			p sum
+# 		end
+# 		end
+# 		sum1 = sum % 10
+# 		sum1 = 10 - sum1
+# 	if sum1 == checkdigit.to_i
+# 		true
+# 	else
+# 		false
+# 	end
+# end
