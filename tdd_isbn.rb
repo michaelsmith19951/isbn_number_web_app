@@ -7,6 +7,6 @@ class TestIsbn < Minitest::Test
         assert_equal("12345", isbn_dash("1-2-3-4-5"))
     end
   def test_that_letters_are_removed
-  		assert_equal("a..z", isbn_letters("a..z"))
+  		assert_equal("", isbn_letters("a..z"))
   	end
 end
