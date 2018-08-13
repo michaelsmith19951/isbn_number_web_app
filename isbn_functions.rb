@@ -26,7 +26,7 @@ def isbn_letters(isbn)
 end
 def isbn10_ready(isbn)
 	""
-	isbn2 = isbn.gsub(/[^0-9xX]/,'').gsub(/x/,'X')
+	isbn2 = isbn.gsub(/[^0-9xX]/, "").gsub(/x/,"X")
 	if isbn2.length != 10
 		"Invalid ISBN"
 	else
@@ -60,22 +60,22 @@ def isbn10_checksum(isbn)
 		true
 	end
 end
-# def isbn10_validation(isbn)
-# 	isbn10_checker = isbn10_checksum(isbn).to_s
-# 	if isbn10_checker == "Invalid ISBN"
-# 		"Invalid ISBN"
-# 	else
-# 		if isbn10_checker == "10" && isbn[-1] == "X" 
-# 			"Valid ISBN10"
-# 		elsif isbn10_checker == "10" && isbn[-1] == "x"
-# 			"Valid ISBN10"
-# 		elsif isbn10_checker == isbn[-1]
-# 			"Valid ISBN10"
-# 		else
-# 			"Invalid ISBN"
-# 		end
-# 	end
-# end
+def isbn10_validation(isbn)
+	isbn10_checker = isbn10_checksum(isbn).to_s
+	if isbn10_checker == "Invalid ISBN"
+		"Invalid ISBN"
+	else
+		if isbn10_checker == "10" && isbn[-1] == "X" 
+			"Valid ISBN10"
+		elsif isbn10_checker == "10" && isbn[-1] == "x"
+			"Valid ISBN10"
+		elsif isbn10_checker == isbn[-1]
+			"Valid ISBN10"
+		else
+			"Invalid ISBN"
+		end
+	end
+end
 def isbn13_ready(isbn)
 	""
 	isbn2 = isbn.gsub(/[^0-9]/,'')
@@ -103,58 +103,26 @@ def isbn13_checksum(isbn)
 		false
 	end 
 end
-# def isbn13_checksum(isbn)
-# 	isbn2 = isbn13_ready(isbn)
-# 	if isbn2 == "Invalid ISBN"
-# 		false
-# 	else
-# 		checksum_arr = []
-# 		counter = 1
-# 		sum = 0
-# 		isbn2 = isbn2.split("")
-# 		checkdigit = isbn2.pop
-# 		isbn2.each_with_index do |inv, num|
-# 			num = num.to_i
-# 			inv = inv.to_i
-# 			if num.even? == true
-# 				sum += inv * 1
-# 			else
-# 				sum += inv * 3
-# 			end
-# 			p sum
-# 		end
-# 		sum1 = sum % 10
-# 		sum1 = 10 - sum1
-# 		true
-# 	end
-# 	if sum1 == checkdigit.to_i
-# 		true
-# 	else
-# 		false
-# 	end
-# end
-# def isbn13_validation(isbn)
-# 	isbn13_checker = isbn13_checksum(isbn)
-# 	if isbn13_checker == "Invalid ISBN"
-# 		"Invalid ISBN"
-# 	else
-# 		if isbn13_checker.to_s == isbn[-1]
-# 			"Valid ISBN13"
-# 		else
-# 			"Invalid ISBN"
-# 		end
-# 	end
-# end
-# def choose_isbn10_or_isbn13(isbn)
-# 	isbn2 = isbn
-# 	if isbn == isbn10_checksum
-# 		true
-# 	else
-# 		false
-# 	end
-# 	if isbn = isbn13_checksum
-# 		true
-# 	else
-# 		false
-# 	end
-# end
+def isbn13_validation(isbn)
+	isbn13_checker = isbn13_checksum(isbn)
+	if isbn13_checker == "Invalid ISBN"
+		"Invalid ISBN"
+	else
+		if isbn13_checker.to_s == isbn[-1]
+			"Valid ISBN13"
+		else
+			"Invalid ISBN"
+		end
+	end
+end
+def choose_isbn10_or_isbn13(isbn)
+	if isbn10_validation(isbn) == "Valid ISBN10"
+		"Valid ISBN10"
+	else 
+		if isbn13_validation(isbn) == "Valid ISBN13"
+			"Valid ISBN13"
+		else
+			"Invalid ISBN"
+		end
+	end
+end
