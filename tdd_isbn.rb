@@ -10,6 +10,6 @@ class TestIsbn < Minitest::Test
   		assert_equal("", isbn_letters("a..z"))
   	end
   def test_that_characters_are_removed
-  		assert_equal("!", isbn_characters("~!@#$%^&*+/"))
+  		assert_equal("", isbn_characters("~!@#$%^&*+/"))
   	end
 end
