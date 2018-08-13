@@ -16,4 +16,7 @@ class TestIsbn < Minitest::Test
   		assert_equal("877195869x", isbn_letters("877195869x"))
   		assert_equal("877195869X", isbn_letters("877195869X"))
   	end
+  def test_that_isbn10_has_10_digits
+  		assert_equal("1234567890", isbn_letters("1234567890"))
+  	end
 end
