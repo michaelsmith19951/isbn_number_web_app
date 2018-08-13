@@ -57,5 +57,6 @@ def isbn10_checksum(isbn)
 			end
 		end
 		checksum_arr.reduce(:+) % 11
+		true
 	end
 end
