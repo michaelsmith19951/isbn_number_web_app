@@ -5,5 +5,5 @@ function checkCookies() {
     } else {
         text = "Cookies are not enabled. For the best experience with this app, please turn on your browser's cookies.";
     }
-    document.getElementById("demo").innerHTML = text;
+    document.getElementById("cookies").innerHTML = text;
 }
