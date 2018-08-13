@@ -10,3 +10,9 @@ def isbn_letters(alphabet)
 	alphabet = alphabet.tr(' ', '')
 	alphabet
 end
+def isbn_characters(characters)
+	characters.to_s
+	characters = characters.tr("~!@#$%^&*+/", '')
+	characters = characters.tr(' ', '')
+	characters
+end
