@@ -26,7 +26,7 @@ def isbn_letters(isbn)
 end
 def isbn10_ready(isbn)
 	""
-	isbn2 = isbn.gsub(/[^0-9xX]/, "").gsub(/x/,"X")
+	isbn2 = isbn.gsub(/[^0-9xX]/, '').gsub(/x/, 'X')
 	if isbn2.length != 10
 		"Invalid ISBN"
 	else
@@ -39,6 +39,7 @@ def isbn10_ready(isbn)
 				"Invalid ISBN"
 			end
 		else
+			"Valid ISBN"
 			isbn2
 		end
 	end
@@ -89,7 +90,7 @@ def isbn13_checksum(isbn)
 	isbn2 = isbn13_ready(isbn)
 	if isbn2 == "Invalid ISBN"
 		"Invalid ISBN"
-		true
+		false
 	else
 		checksum_arr = []
 		isbn2.chop.each_char.with_index do |num, index|
@@ -100,7 +101,7 @@ def isbn13_checksum(isbn)
 			end
 		end
 		(10 - (checksum_arr.reduce(:+)) % 10) % 10
-		false
+		true
 	end 
 end
 def isbn13_validation(isbn)
@@ -125,4 +126,11 @@ def choose_isbn10_or_isbn13(isbn)
 			"Invalid ISBN"
 		end
 	end
+end
+def isbn_hash(isbn)
+	validity = choose_isbn10_or_isbn13(isbn)
+	isbn_hash = {}
+	isbn_hash["ISBN"] = "#{isbn}"
+	isbn_hash["Validity"] = "#{validity}"
+	isbn_hash
 end
