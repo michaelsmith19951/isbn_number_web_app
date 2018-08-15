@@ -19,9 +19,9 @@ class TestIsbn < Minitest::Test
   def test_that_isbn10_has_10_digits
   		assert_equal("1234567890", isbn_letters("1234567890"))
   	end
-  def test_that_isbn10_877195869a_has_valid_checksum
-  		assert_equal(false, isbn10_checksum("877195869a"))
-  	end
+  # def test_that_isbn10_877195869a_has_valid_checksum
+  # 		assert_equal(false, isbn10_checksum("877195869a"))
+  # 	end
   def test_that_isbn10_877195869X_has_valid_checksum
   		assert_equal(true, isbn10_checksum("877195869X"))
   	end
@@ -36,5 +36,23 @@ class TestIsbn < Minitest::Test
   end
   def test_that_isbn13_9780470059029_has_valid_checksum
   		assert_equal(true, isbn13_checksum("9780470059029"))
+  	end
+  def test_that_isbn10_ready_works_with_877195869X
+  		assert_equal("877195869X", isbn10_ready("877195869X"))
+  	end
+  def test_that_isbn10_ready_works_with_8771X58690
+  		assert_equal("Invalid ISBN", isbn10_ready("8771X58690"))
+  	end
+  def test_that_isbn10_ready_works_with_invalid_characters
+  		assert_equal("877195869X", isbn10_ready("877195869X"))
+  	end
+  def test_that_isbn10_invalid_chars_works
+  		assert_equal(false, isbn10_contains_invalid_chars("877195869X"))
+  end
+  def test_that_isbn10_invalid_chars_asterisk
+  		assert_equal(true, isbn10_contains_invalid_chars("877*195869X"))
+  	end
+  def test_that_isbn10_invalid_chars_dollar_sign
+  		assert_equal(true, isbn10_contains_invalid_chars("877$195869X"))
   	end
 end

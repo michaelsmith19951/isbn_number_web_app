@@ -24,25 +24,38 @@ def isbn_letters(isbn)
 		isbn2
 	end
 end
+def isbn10_contains_invalid_chars(isbn2)
+	verify = false
+	arr = ["*", "$"]
+	arr.each do |item|
+		if isbn2.include?(item)
+			verify = true
+		end
+	end
+	verify
+end
 def isbn10_ready(isbn)
 	""
-	isbn2 = isbn.gsub(/[^0-9xX]/, '').gsub(/x/, 'X')
+	verify = "Invalid ISBN"
+	# isbn2 = isbn.gsub(/[^0-9xX]/, '*').gsub(/x/, 'X')
+	isbn2 = isbn.gsub(/x/, 'X')
 	if isbn2.length != 10
 		"Invalid ISBN"
 	else
+		p "test that isbn2 is #{isbn2}"
 		if isbn2.include? "X" 
 			if true && isbn2[-1] == "X"
 				isbn2
-			elsif true && isbn2[1] != "X"
-				"Invalid ISBN"
+				verify = isbn2
 			else
 				"Invalid ISBN"
 			end
 		else
 			"Valid ISBN"
-			isbn2
+			verify = isbn2
 		end
 	end
+	verify
 end
 def isbn10_checksum(isbn)
 	isbn2 = isbn10_ready(isbn)
@@ -85,7 +98,10 @@ def isbn13_ready(isbn)
 	else
 		"Invalid ISBN"
 	end
-end
+	else
+			"Valid ISBN"
+			isbn2
+		end
 def isbn13_checksum(isbn)
 	isbn2 = isbn13_ready(isbn)
 	if isbn2 == "Invalid ISBN"

@@ -13,7 +13,7 @@ post '/isbn_number_main_page' do
 	isbn = params[:isbn] 
 	p "test if isbn is #{isbn} on main page"
 	isbn2 = isbn.split
-	p "#{isbn2} is isbn2 and #{isbn2.class} is isbn2 string and #{isbn2.length} isbn2 length"
+	p "#{isbn2} is isbn2 and #{isbn2.class} is isbn2 string and #{isbn2.length} is isbn2 length on main page"
 	isbn_output = {}
 	isbn2.each do
 		for isbn in isbn2
@@ -29,5 +29,7 @@ post '/isbn_number_main_page' do
 	end
 	isbn_orig = isbn_output.values
 	validity_final = isbn_output.values
+	p "test if isbn orig class is #{isbn_orig.class} on main page"
+	p "test if validity final class is #{validity_final.class} on main page"
 	erb :isbn_number_main_page, locals:{isbn_output: isbn_output, isbn_orig: isbn_orig, validity_final: validity_final}
 end
