@@ -85,22 +85,22 @@ def isbn10_checksum(isbn)
 		true
 	end
 end
-def isbn10_validation(isbn)
-	isbn10_checker = isbn10_checksum(isbn).to_s
-	if isbn10_checker == "Invalid ISBN"
-		"Invalid ISBN"
-	else
-		if isbn10_checker == "10" && isbn[-1] == "X" 
-			"Valid ISBN10"
-		elsif isbn10_checker == "10" && isbn[-1] == "x"
-			"Valid ISBN10"
-		elsif isbn10_checker == isbn[-1]
-			"Valid ISBN10"
-		else
-			"Invalid ISBN"
-		end
-	end
-end
+# def isbn10_validation(isbn)
+# 	isbn10_checker = isbn10_checksum(isbn).to_s
+# 	if isbn10_checker == "Invalid ISBN"
+# 		"Invalid ISBN"
+# 	else
+# 		if isbn10_checker == "10" && isbn[-1] == "X" 
+# 			"Valid ISBN10"
+# 		elsif isbn10_checker == "10" && isbn[-1] == "x"
+# 			"Valid ISBN10"
+# 		elsif isbn10_checker == isbn[-1]
+# 			"Valid ISBN10"
+# 		else
+# 			"Invalid ISBN"
+# 		end
+# 	end
+# end
 def isbn13_valid_chars(isbn2)
 	verify = isbn2.count("^0-9, []").zero?
 end
@@ -111,7 +111,6 @@ def isbn13_ready(isbn2)
 	if isbn13_valid_chars(isbn2) == true
 		if isbn2.length != 13
 			verify = "Invalid ISBN"
-		
 		else
 			"Valid ISBN"
 			verify = isbn2
@@ -139,33 +138,31 @@ def isbn13_checksum(isbn)
 		true
 	end 
 end
-def isbn13_validation(isbn)
-	isbn13_checker = isbn13_checksum(isbn)
-	if isbn13_checker == "Invalid ISBN"
-		"Invalid ISBN"
-	else
-		if isbn13_checker.to_s == isbn[-1]
-			"Valid ISBN13"
-		else
-			"Invalid ISBN"
-		end
-	end
-end
-def choose_isbn10_or_isbn13(isbn)
-	if isbn10_validation(isbn) == "Valid ISBN10"
+def choose_isbn10_or_isbn13(isbn) 
+	if isbn10_ready(isbn) == "Valid ISBN10"
 		"Valid ISBN10"
+		true
 	else 
-		if isbn13_validation(isbn) == "Valid ISBN13"
+		if isbn13_ready(isbn) == "Valid ISBN13"
 			"Valid ISBN13"
+			false
 		else
 			"Invalid ISBN"
+			false
 		end
 	end
 end
-def isbn_hash(isbn)
-	validity = choose_isbn10_or_isbn13(isbn)
-	isbn_hash = {}
-	isbn_hash["ISBN"] = "#{isbn}"
-	isbn_hash["Validity"] = "#{validity}"
-	isbn_hash
-end
+
+# def isbn13_validation(isbn)
+# 	isbn13_checker = isbn13_checksum(isbn)
+# 	if isbn13_checker == "Invalid ISBN"
+# 		"Invalid ISBN"
+# 	else
+# 		if isbn13_checker.to_s == isbn[-1]
+# 			"Valid ISBN13"
+# 		else
+# 			"Invalid ISBN"
+# 		end
+# 	end
+# end
+
